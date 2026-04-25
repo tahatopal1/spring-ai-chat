@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: chat-ai-java-spring
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-5-nano
+server:
+  port: 9080
