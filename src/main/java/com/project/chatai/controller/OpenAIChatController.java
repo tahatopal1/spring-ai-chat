@@ -1,5 +1,6 @@
 package com.project.chatai.controller;
 
+import com.project.chatai.service.OpenAIService;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.ChatClientResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OpenAIChatController {
 
   private final ChatClient chatClient;
+  private final OpenAIService openAIService;
 
   private final String SYSTEM_PROMPT = "You are a helpful assistant to summarize any given content."
       + " Make sure the summary is concise, informative, etc."
@@ -20,8 +22,10 @@ public class OpenAIChatController {
       + " If the question is not about summarization,"
       + " response with 'I can only help with summarization tasks'.";
 
-  public OpenAIChatController(@Qualifier("openAIChatClient") ChatClient chatClient) {
+  public OpenAIChatController(@Qualifier("openAIChatClient") ChatClient chatClient,
+      OpenAIService openAIService) {
     this.chatClient = chatClient;
+    this.openAIService = openAIService;
   }
 
   @PostMapping("/summarize")
@@ -46,7 +50,7 @@ public class OpenAIChatController {
             + "Example Output:\n"
             + "\" Features:\n"
             + "* Large technology company\n"
-            + "* +20 years of experiance\n"
+            + "* +20 years of experience\n"
             + "  Domains:\n"
             + "* Banking\n"
             + "* Finance\n"
@@ -54,6 +58,11 @@ public class OpenAIChatController {
             .param("introduction", introduction))
         .call()
         .content();
+  }
+
+  @PostMapping("/client")
+  public String clientCallback(@RequestBody String message) {
+    return openAIService.chat(message);
   }
 
 }
