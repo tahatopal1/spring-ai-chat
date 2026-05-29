@@ -7,5 +7,13 @@ spring:
       chat:
         options:
           model: gpt-5-nano
+    vertex:
+      ai:
+        gemini:
+          project-id: ${GOOGLE_PROJECT_ID}
+          location: ${GOOGLE_LOCATION}
+          chat:
+            options:
+              model: ${GOOGLE_VERTEX_MODEL}
 server:
   port: 9080
