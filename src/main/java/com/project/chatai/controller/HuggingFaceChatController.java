@@ -18,7 +18,7 @@ public class HuggingFaceChatController {
       "You are a senior engineer. Generate code based on the given description. " +
           "Ensure the code is idiomatic, efficient, and follows best practices.";
 
-  public HuggingFaceChatController(@Qualifier("openAIChatClient") ChatClient chatClient) {
+  public HuggingFaceChatController(@Qualifier("huggingFaceChatClient") ChatClient chatClient) {
     this.chatClient = chatClient;
   }
 
