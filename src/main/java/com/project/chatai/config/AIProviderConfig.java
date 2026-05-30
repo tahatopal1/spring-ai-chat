@@ -13,11 +13,7 @@ public class AIProviderConfig {
 
   @Bean("openAIChatClient")
   ChatClient openAIChatClient(OpenAiChatModel openAiChatModel) {
-    return ChatClient.builder(openAiChatModel)
-        .defaultOptions(OpenAiChatOptions.builder()
-            .temperature(1.0)
-            .build())
-        .build();
+    return ChatClient.builder(openAiChatModel).build();
   }
 
   @Bean("vertexAIChatClient")

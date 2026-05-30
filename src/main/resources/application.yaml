@@ -3,11 +3,15 @@ spring:
     name: chat-ai-java-spring
   ai:
     openai:
-      api-key: ${OPENAI_API_KEY}
-      base-url: https://router.huggingface.co
+#      Comment out the traditional OpenAI key
+#      api-key: ${OPENAI_API_KEY}
+      api-key: ${HUGGINGFACE_API_KEY}
+      base-url: https://xxxx.us-east-1.aws.endpoints.huggingface.cloud
       chat:
         options:
-           model: gpt-5-nano
+#           Comment out the traditional OpenAI model
+#           model: gpt-5-nano
+            model: Qwen/Qwen2.5-Coder-7B-Instruct
     vertex:
       ai:
         gemini:
@@ -19,7 +23,7 @@ spring:
     huggingface:
       chat:
         api-key: ${HUGGINGFACE_API_KEY}
-        url: https://g2mfzlrnvytppwot.us-east-1.aws.endpoints.huggingface.cloud
+        url: https://xxxx.us-east-1.aws.endpoints.huggingface.cloud
         options:
           model: Qwen/Qwen2.5-Coder-7B-Instruct
           max-new-tokens: 1024
