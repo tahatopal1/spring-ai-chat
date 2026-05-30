@@ -3,10 +3,15 @@ spring:
     name: chat-ai-java-spring
   ai:
     openai:
-      api-key: ${OPENAI_API_KEY}
+#      Comment out the traditional OpenAI key
+#      api-key: ${OPENAI_API_KEY}
+      api-key: ${HUGGINGFACE_API_KEY}
+      base-url: https://router.huggingface.co
       chat:
         options:
-          model: gpt-5-nano
+#           Comment out the traditional OpenAI model
+#           model: gpt-5-nano
+            model: Qwen/Qwen2.5-Coder-7B-Instruct:nscale
     vertex:
       ai:
         gemini:
@@ -15,5 +20,13 @@ spring:
           chat:
             options:
               model: ${GOOGLE_VERTEX_MODEL}
+    huggingface:
+      chat:
+        api-key: ${HUGGINGFACE_API_KEY}
+        url:
+        options:
+          model: Qwen/Qwen2.5-Coder-7B-Instruct
+          max-new-tokens: 1024
+          temperature: 0.7
 server:
   port: 9080
